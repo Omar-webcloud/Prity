@@ -17,6 +17,8 @@ import { cn } from "@/lib/utils";
 
 type GlyphName =
   | "signal"
+  | "designer"
+  | "contact"
   | "book"
   | "seal"
   | "launch"
@@ -221,6 +223,21 @@ function PremiumGlyph({
           <path {...common} d="M8 14l4-4M36 10l4 4" />
         </>
       )}
+      {name === "designer" && (
+        <>
+          <path {...common} d="M9 34V14h13c8 0 13 4 13 10s-5 10-13 10H9z" />
+          <path {...common} d="M17 20h6c3 0 5 2 5 4s-2 4-5 4h-6V20z" />
+          <path {...common} d="M36 13l4-4M38 35l4 4M34 24h7" />
+        </>
+      )}
+      {name === "contact" && (
+        <>
+          <path {...common} d="M8 14h32v22H8z" />
+          <path {...common} d="M9 15l15 13 15-13" />
+          <path {...common} d="M16 28l-7 7M32 28l7 7" />
+          <path {...common} d="M35 9l4 4M9 9l4 4" />
+        </>
+      )}
       {name === "book" && (
         <>
           <path {...common} d="M12 10h15a7 7 0 0 1 7 7v21H18a6 6 0 0 0-6 6V10z" />
@@ -250,10 +267,12 @@ function PremiumGlyph({
       )}
       {name === "figma" && (
         <>
-          <path {...common} d="M18 8h8a8 8 0 0 1 0 16h-8a8 8 0 0 1 0-16z" />
-          <path {...common} d="M18 24h8a8 8 0 1 1-8 8v-8z" />
-          <path {...common} d="M18 24a8 8 0 0 1 0 16 8 8 0 0 1 0-16z" />
-          <path {...common} d="M26 24a8 8 0 1 0 0-16" />
+          <circle {...common} cx="18" cy="14" r="6" />
+          <circle {...common} cx="30" cy="14" r="6" />
+          <circle {...common} cx="18" cy="26" r="6" />
+          <circle {...common} cx="30" cy="26" r="6" />
+          <circle {...common} cx="18" cy="38" r="6" />
+          <path {...common} d="M24 26a6 6 0 0 0 6 6 6 6 0 0 0 0-12 6 6 0 0 0-6 6z" />
         </>
       )}
       {name === "atelier" && (
@@ -477,7 +496,7 @@ function Hero() {
           className="max-w-3xl"
         >
           <Badge className="mb-6 gap-2 text-foreground">
-            <PremiumGlyph name="signal" className="h-4 w-4 icon-mark" />
+            <PremiumGlyph name="designer" className="h-4 w-4 icon-mark" />
             UX/UI Designer and Founder of Framece
           </Badge>
           <h1 className="font-display text-5xl font-bold leading-[1.02] tracking-normal text-foreground sm:text-7xl lg:text-8xl">
@@ -939,7 +958,7 @@ function Contact() {
         </Reveal>
         <Reveal delay={0.08} className="glass flex flex-col justify-between rounded-[8px] p-6 sm:p-8">
           <div>
-            <PremiumGlyph name="signal" className="h-12 w-12 icon-mark" />
+            <PremiumGlyph name="contact" className="h-12 w-12 icon-mark" />
             <h3 className="mt-6 font-display text-3xl font-bold">
               Direct contact, no form friction.
             </h3>
