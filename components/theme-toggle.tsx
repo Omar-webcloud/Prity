@@ -5,23 +5,27 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui";
 
 export function ThemeToggle() {
-  const [dark, setDark] = useState(() => {
-    if (typeof window === "undefined") {
-      return true;
-    }
-
-    const stored = window.localStorage.getItem("theme");
-    return stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+  const [mounted, setMounted] = useState(false);
+  const [dark, setDark] = useState(true);
 
   useEffect(() => {
+    setMounted(true);
+    const stored = window.localStorage.getItem("theme");
+    if (stored !== null) {
+      setDark(stored === "dark");
+    } else {
+      setDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     document.documentElement.classList.toggle("dark", dark);
     window.localStorage.setItem("theme", dark ? "dark" : "light");
-  }, [dark]);
+  }, [dark, mounted]);
 
   function toggleTheme() {
-    const next = !dark;
-    setDark(next);
+    setDark(!dark);
   }
 
   return (
