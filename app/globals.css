@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 44 100% 98%;
+  --foreground: 222 31% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 31% 10%;
+  --primary: 263 91% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 190 92% 54%;
+  --secondary-foreground: 222 31% 10%;
+  --muted: 220 28% 94%;
+  --muted-foreground: 224 16% 38%;
+  --accent: 326 91% 67%;
+  --accent-foreground: 222 31% 10%;
+  --border: 225 18% 84%;
+  --input: 225 18% 84%;
+  --ring: 263 91% 58%;
+}
+
+.dark {
+  --background: 252 39% 6%;
+  --foreground: 36 48% 92%;
+  --card: 252 33% 10%;
+  --card-foreground: 36 48% 92%;
+  --primary: 173 84% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 52 96% 62%;
+  --secondary-foreground: 252 39% 6%;
+  --muted: 253 23% 15%;
+  --muted-foreground: 35 22% 68%;
+  --accent: 354 95% 72%;
+  --accent-foreground: 252 39% 6%;
+  --border: 35 20% 86%;
+  --input: 253 20% 25%;
+  --ring: 173 84% 52%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(130deg, rgba(124, 58, 237, 0.14), transparent 32rem),
+    linear-gradient(290deg, rgba(14, 165, 233, 0.14), transparent 28rem),
+    hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans), Inter, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.dark body {
+  background:
+    linear-gradient(116deg, rgba(16, 185, 129, 0.14) 0%, transparent 34%),
+    linear-gradient(241deg, rgba(255, 210, 63, 0.13) 0%, transparent 28%),
+    linear-gradient(180deg, hsl(252 39% 6%) 0%, hsl(260 34% 8%) 48%, hsl(210 46% 7%) 100%);
+}
+
+::selection {
+  background: hsl(var(--primary) / 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.glass {
+  background: linear-gradient(135deg, hsl(var(--card) / 0.82), hsl(var(--card) / 0.58));
+  border: 1px solid hsl(var(--border) / 0.76);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(20px);
+}
+
+.dark .glass {
+  background:
+    linear-gradient(135deg, rgba(255, 248, 229, 0.095), rgba(255, 248, 229, 0.035)),
+    linear-gradient(180deg, rgba(14, 165, 233, 0.04), transparent);
+  border-color: rgba(255, 244, 214, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 30px 90px rgba(0, 0, 0, 0.34);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #7c3aed, #0ea5e9 46%, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .text-gradient {
+  background: linear-gradient(118deg, #f7e7b4 0%, #27e0c2 42%, #ff7a8a 82%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.mesh-gradient {
+  background:
+    linear-gradient(120deg, rgba(124, 58, 237, 0.58), transparent 32%),
+    linear-gradient(260deg, rgba(34, 211, 238, 0.5), transparent 34%),
+    linear-gradient(12deg, rgba(236, 72, 153, 0.38), transparent 36%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(39, 39, 68, 0.92));
+}
+
+.dark .mesh-gradient {
+  background:
+    linear-gradient(132deg, rgba(39, 224, 194, 0.48), transparent 31%),
+    linear-gradient(278deg, rgba(247, 201, 72, 0.28), transparent 34%),
+    linear-gradient(20deg, rgba(255, 122, 138, 0.28), transparent 38%),
+    linear-gradient(135deg, rgba(18, 13, 31, 0.98), rgba(10, 38, 41, 0.92));
+}
+
+.icon-mark {
+  color: hsl(var(--primary));
+  filter: drop-shadow(0 12px 22px hsl(var(--primary) / 0.2));
+}
+
+.dark .icon-mark {
+  color: #27e0c2;
+  filter: drop-shadow(0 12px 26px rgba(39, 224, 194, 0.24));
+}
+
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
