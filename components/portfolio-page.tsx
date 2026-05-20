@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   ArrowRight,
   ChevronRight,
@@ -372,10 +373,16 @@ export function PortfolioPage() {
 }
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/72 backdrop-blur-2xl">
       <Container className="flex h-16 items-center justify-between">
-        <a href="#home" className="focus-ring rounded-full font-display text-base font-bold">
+        <a
+          href="#home"
+          className="focus-ring rounded-full font-display text-base font-bold"
+          onClick={() => setMenuOpen(false)}
+        >
           Fariha<span className="text-primary">.</span>
         </a>
         <nav aria-label="Main navigation" className="hidden items-center gap-1 md:flex">
@@ -397,8 +404,60 @@ function Header() {
             </a>
           </Button>
           <ThemeToggle />
+          <button
+            type="button"
+            className="focus-ring relative grid h-11 w-11 place-items-center rounded-full border bg-card/70 md:hidden"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span
+              className={cn(
+                "absolute h-0.5 w-5 rounded-full bg-foreground transition",
+                menuOpen ? "rotate-45" : "-translate-y-1.5"
+              )}
+            />
+            <span
+              className={cn(
+                "absolute h-0.5 w-5 rounded-full bg-foreground transition",
+                menuOpen ? "opacity-0" : "opacity-100"
+              )}
+            />
+            <span
+              className={cn(
+                "absolute h-0.5 w-5 rounded-full bg-foreground transition",
+                menuOpen ? "-rotate-45" : "translate-y-1.5"
+              )}
+            />
+          </button>
         </div>
       </Container>
+      {menuOpen ? (
+        <Container className="pb-4 md:hidden">
+          <nav
+            aria-label="Mobile navigation"
+            className="glass grid gap-1 rounded-[8px] p-2"
+          >
+            {navItems.map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                className="focus-ring rounded-[8px] px-4 py-3 text-sm font-semibold text-muted-foreground transition hover:bg-background/55 hover:text-foreground"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ))}
+            <a
+              href="mailto:hello@framece.design"
+              className="focus-ring mt-1 rounded-[8px] bg-foreground px-4 py-3 text-sm font-semibold text-background"
+              onClick={() => setMenuOpen(false)}
+            >
+              Email Fariha
+            </a>
+          </nav>
+        </Container>
+      ) : null}
     </header>
   );
 }
@@ -457,48 +516,27 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.96, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.75, ease: "easeOut", delay: 0.1 }}
-          className="relative mx-auto w-full max-w-xl"
+          className="relative mx-auto w-full max-w-[470px] lg:ml-auto"
         >
-          <div className="mesh-gradient absolute inset-8 -z-10 rounded-full blur-3xl" />
-          <div className="glass relative overflow-hidden rounded-[8px] p-4">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[8px] bg-muted">
+          <div className="mesh-gradient absolute inset-x-4 bottom-0 top-12 -z-10 rounded-[32px] opacity-75 blur-3xl" />
+          <div className="glass relative overflow-hidden rounded-[8px] p-3 sm:p-4">
+            <div className="absolute left-7 top-7 z-10 h-16 w-16 border-l border-t border-white/45" />
+            <div className="absolute bottom-7 right-7 z-10 h-16 w-16 border-b border-r border-white/45" />
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[8px] bg-[#e9ff26]">
               <Image
                 src="/headshot.jpeg"
                 alt="Fariha Munir Prity"
                 fill
                 priority
                 sizes="(min-width: 1024px) 42vw, 90vw"
-                className="object-cover"
+                className="object-cover object-[50%_30%]"
               />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/5 mix-blend-multiply" />
             </div>
           </div>
-          <FloatingCard className="left-0 top-10" title="Design Systems" value="Tokens + Components" />
-          <FloatingCard className="bottom-10 right-0" title="Prototype" value="Smooth user flows" />
         </motion.div>
       </Container>
     </section>
-  );
-}
-
-function FloatingCard({
-  className,
-  title,
-  value
-}: {
-  className?: string;
-  title: string;
-  value: string;
-}) {
-  return (
-    <motion.div
-      aria-hidden="true"
-      animate={{ y: [0, -10, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      className={cn("glass absolute hidden rounded-[8px] p-4 shadow-glow sm:block", className)}
-    >
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{title}</p>
-      <p className="mt-1 text-sm font-semibold">{value}</p>
-    </motion.div>
   );
 }
 
