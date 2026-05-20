@@ -1,4 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#c3e645" }
+  ]
+};
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 

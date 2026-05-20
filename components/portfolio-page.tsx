@@ -217,151 +217,180 @@ function PremiumGlyph({
     >
       {name === "signal" && (
         <>
-          <path {...common} d="M10 30c8-14 20-14 28 0" />
-          <path {...common} d="M15 24c6-7 12-7 18 0" />
-          <path {...common} d="M24 34l4-8-8 4 6 2-2 2z" />
-          <path {...common} d="M8 14l4-4M36 10l4 4" />
+          <circle cx="24" cy="24" r="5" {...common} />
+          <path {...common} d="M 24 8 A 16 16 0 0 1 40 24" />
+          <path {...common} d="M 8 24 A 16 16 0 0 1 24 8" />
+          <path {...common} d="M 24 40 A 16 16 0 0 1 8 24" />
+          <path {...common} d="M 40 24 A 16 16 0 0 1 24 40" />
+          <circle cx="24" cy="24" r="1" fill="currentColor" />
         </>
       )}
       {name === "designer" && (
         <>
-          <path {...common} d="M9 34V14h13c8 0 13 4 13 10s-5 10-13 10H9z" />
-          <path {...common} d="M17 20h6c3 0 5 2 5 4s-2 4-5 4h-6V20z" />
-          <path {...common} d="M36 13l4-4M38 35l4 4M34 24h7" />
+          <path {...common} d="M 12 36 C 18 20, 30 20, 36 36" />
+          <rect x="9.5" y="33.5" width="5" height="5" fill="currentColor" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="33.5" y="33.5" width="5" height="5" fill="currentColor" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="24" cy="24" r="3" fill="none" stroke="currentColor" strokeWidth="1.75" />
+          <path {...common} d="M 24 21 L 24 8 M 21 8 L 27 8" />
         </>
       )}
       {name === "contact" && (
         <>
-          <path {...common} d="M8 14h32v22H8z" />
-          <path {...common} d="M9 15l15 13 15-13" />
-          <path {...common} d="M16 28l-7 7M32 28l7 7" />
-          <path {...common} d="M35 9l4 4M9 9l4 4" />
+          <rect x="8" y="12" width="32" height="24" rx="4" {...common} />
+          <path {...common} d="M 8 14 L 24 26 L 40 14" />
+          <path {...common} d="M 16 25 L 9 32 M 32 25 L 39 32" />
         </>
       )}
       {name === "book" && (
         <>
-          <path {...common} d="M12 10h15a7 7 0 0 1 7 7v21H18a6 6 0 0 0-6 6V10z" />
-          <path {...common} d="M18 17h10M18 24h14M18 31h9" />
-          <path {...common} d="M12 38h22" />
+          <path {...common} d="M 6 36 C 12 34, 20 34, 24 38 C 28 34, 36 34, 42 36 V 10 C 36 8, 28 8, 24 12 C 20 8, 12 8, 6 10 Z" />
+          <path {...common} d="M 24 12 V 38" />
+          <path {...common} d="M 10 16 C 14 15, 18 15, 20 16" />
+          <path {...common} d="M 10 22 C 14 21, 18 21, 20 22" />
+          <path {...common} d="M 10 28 C 14 27, 18 27, 20 28" />
+          <path {...common} d="M 38 16 C 34 15, 30 15, 28 16" />
+          <path {...common} d="M 38 22 C 34 21, 30 21, 28 22" />
+          <path {...common} d="M 38 28 C 34 27, 30 27, 28 28" />
         </>
       )}
       {name === "seal" && (
         <>
-          <path {...common} d="M24 7l5 5 7 1 1 7 5 5-5 5-1 7-7 1-5 5-5-5-7-1-1-7-5-5 5-5 1-7 7-1 5-5z" />
-          <path {...common} d="M17 25l5 5 10-12" />
+          <circle cx="24" cy="24" r="16" {...common} />
+          <path {...common} d="M 18 24 L 22 28 L 30 18" />
+          <path {...common} d="M 24 4 L 24 8 M 24 40 L 24 44 M 4 24 L 8 24 M 40 24 L 44 24" />
         </>
       )}
       {name === "launch" && (
         <>
-          <path {...common} d="M16 31c-4 1-7 4-8 9 5-1 8-4 9-8" />
-          <path {...common} d="M19 29L12 18l8-2C25 9 32 6 40 8c2 8-1 15-8 20l-2 8-11-7z" />
-          <path {...common} d="M30 16a3 3 0 1 0 6 0 3 3 0 0 0-6 0z" />
+          <path {...common} d="M38 10 C32 12, 22 18, 18 26 L22 30 C30 26, 36 16, 38 10 Z" />
+          <path {...common} d="M18 26 L12 26 L16 30 M22 30 L22 36 L26 32" />
+          <path {...common} d="M18 30 L11 37 C13 35, 15 35, 17 37 L20 30" />
         </>
       )}
       {name === "interface" && (
         <>
-          <path {...common} d="M9 12h30v24H9z" />
-          <path {...common} d="M9 19h30M17 27h10M17 32h16" />
-          <path {...common} d="M14 15h.2M19 15h.2M24 15h.2" />
+          <rect x="8" y="10" width="32" height="28" rx="3" {...common} />
+          <path {...common} d="M 8 18 H 40" />
+          <circle cx="13" cy="14" r="1.5" fill="currentColor" />
+          <circle cx="18" cy="14" r="1.5" fill="currentColor" />
+          <circle cx="23" cy="14" r="1.5" fill="currentColor" />
+          <path {...common} d="M 14 24 H 34 M 14 30 H 26" />
         </>
       )}
       {name === "figma" && (
-        <>
-          <circle {...common} cx="18" cy="14" r="6" />
-          <circle {...common} cx="30" cy="14" r="6" />
-          <circle {...common} cx="18" cy="26" r="6" />
-          <circle {...common} cx="30" cy="26" r="6" />
-          <circle {...common} cx="18" cy="38" r="6" />
-          <path {...common} d="M24 26a6 6 0 0 0 6 6 6 6 0 0 0 0-12 6 6 0 0 0-6 6z" />
-        </>
+        <g fill="currentColor">
+          <path d="M18 8a6 6 0 0 0-6 6a6 6 0 0 0 6 6h6V8h-6z" />
+          <circle cx="30" cy="14" r="6" />
+          <path d="M18 20a6 6 0 0 0-6 6a6 6 0 0 0 6 6h6V20h-6z" />
+          <circle cx="30" cy="26" r="6" />
+          <path d="M18 32a6 6 0 0 0-6 6a6 6 0 0 0 6 6h6V32z" />
+        </g>
       )}
       {name === "atelier" && (
         <>
-          <path {...common} d="M13 35l13-24 9 9-24 13 2 2z" />
-          <path {...common} d="M24 15l9 9M9 39h30" />
-          <path {...common} d="M33 20l4-4" />
+          <path {...common} d="M 34 8 L 40 14 L 20 34 L 10 38 L 14 28 Z" />
+          <path {...common} d="M 28 14 L 34 20" />
+          <path {...common} d="M 14 28 L 20 34" />
         </>
       )}
       {name === "people" && (
         <>
-          <path {...common} d="M16 22a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM32 22a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
-          <path {...common} d="M7 38c2-7 7-10 13-10s11 3 13 10" />
-          <path {...common} d="M25 29c6-2 13 1 16 9" />
+          <circle cx="18" cy="16" r="5" {...common} />
+          <path {...common} d="M 8 36 C 8 28, 14 26, 18 26 C 22 26, 28 28, 28 36" />
+          <circle cx="30" cy="18" r="4" {...common} />
+          <path {...common} d="M 26 36 C 26 31, 30 29, 33 29 C 36 29, 40 31, 40 36" />
         </>
       )}
       {name === "research" && (
         <>
-          <path {...common} d="M21 31a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM29 29l10 10" />
-          <path {...common} d="M17 21h8M21 17v8" />
+          <circle cx="20" cy="20" r="10" {...common} />
+          <path {...common} d="M 27 27 L 38 38" />
+          <path {...common} d="M 16 20 H 24 M 20 16 V 24" />
         </>
       )}
       {name === "wire" && (
         <>
-          <path {...common} d="M8 12h32v24H8zM8 22h32M18 22v14" />
-          <path {...common} d="M13 17h8M24 29h10" />
+          <rect x="8" y="10" width="32" height="28" rx="2" {...common} />
+          <path {...common} d="M 8 20 H 40 M 20 20 V 38" />
+          <rect x="12" y="24" width="5" height="10" rx="1" {...common} />
+          <rect x="24" y="24" width="12" height="4" rx="1" {...common} />
+          <rect x="24" y="31" width="12" height="4" rx="1" {...common} />
         </>
       )}
       {name === "flow" && (
         <>
-          <path {...common} d="M10 13h10v10H10zM28 25h10v10H28zM10 31h10v4H10z" />
-          <path {...common} d="M20 18h6a6 6 0 0 1 6 6v1M20 33h8" />
+          <rect x="6" y="8" width="10" height="10" rx="1" {...common} />
+          <rect x="32" y="19" width="10" height="10" rx="1" {...common} />
+          <rect x="6" y="30" width="10" height="10" rx="1" {...common} />
+          <path {...common} d="M 16 13 H 24 C 28 13, 28 24, 32 24" />
+          <path {...common} d="M 16 35 H 24 C 28 35, 28 24, 32 24" />
         </>
       )}
       {name === "visual" && (
         <>
-          <path {...common} d="M24 9l14 8v14l-14 8-14-8V17l14-8z" />
-          <path {...common} d="M10 17l14 8 14-8M24 25v14" />
+          <path {...common} d="M 24 6 L 38 14 V 34 L 24 42 L 10 34 V 14 Z" />
+          <path {...common} d="M 10 14 L 24 22 L 38 14" />
+          <path {...common} d="M 24 22 V 42" />
         </>
       )}
       {name === "prototype" && (
         <>
-          <path {...common} d="M16 7h16a4 4 0 0 1 4 4v26a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4z" />
-          <path {...common} d="M20 33h8M19 15h10l-4 7h6l-12 12 4-9h-5l1-10z" />
+          <rect x="12" y="6" width="24" height="36" rx="4" {...common} />
+          <path {...common} d="M 12 10 H 36 M 12 38 H 36" />
+          <circle cx="24" cy="40" r="1" fill="currentColor" />
+          <path {...common} d="M 21 18 L 29 24 L 21 30 Z" fill="currentColor" />
         </>
       )}
       {name === "testing" && (
         <>
-          <path {...common} d="M14 9h20v28H14z" />
-          <path {...common} d="M19 17l4 4 7-8M19 29h10" />
-          <path {...common} d="M10 37h28" />
+          <rect x="12" y="8" width="24" height="32" rx="3" {...common} />
+          <path {...common} d="M 20 8 V 6 C 20 5, 21 4, 22 4 H 26 C 27 4, 28 5, 28 6 V 8" />
+          <path {...common} d="M 17 18 L 19 20 L 23 16" />
+          <path {...common} d="M 27 18 H 31" />
+          <path {...common} d="M 17 28 L 19 30 L 23 26" />
+          <path {...common} d="M 27 28 H 31" />
         </>
       )}
       {name === "refine" && (
         <>
-          <path {...common} d="M24 7v8M24 33v8M7 24h8M33 24h8" />
-          <path {...common} d="M15 15l6 6M33 15l-6 6M15 33l6-6M33 33l-6-6" />
-          <path {...common} d="M24 19l3 5-3 5-3-5 3-5z" />
+          <path {...common} d="M 12 24 A 12 12 0 1 1 24 36" />
+          <path {...common} d="M 36 24 A 12 12 0 1 1 24 12" />
+          <path {...common} d="M 20 36 H 24 V 32" />
+          <path {...common} d="M 28 12 H 24 V 16" />
+          <circle cx="24" cy="24" r="3" {...common} />
         </>
       )}
       {name === "behance" && (
-        <>
-          <path {...common} d="M11 14h13c5 0 7 7 2 10 6 2 4 10-2 10H11V14z" />
-          <path {...common} d="M11 24h13M31 18h9M30 28h11c-1-6-11-7-13-1-3 8 9 12 13 5" />
-        </>
+        <path
+          fill="currentColor"
+          d="M19.4 22.8c1.8-1.1 2.8-2.9 2.8-5.1 0-4.6-3.4-6.7-8.3-6.7H5v24h9.6c5.2 0 8.7-2.3 8.7-7 0-2.6-1.5-4.4-3.9-5.2zM10.8 15h2.4c2.4 0 3.8.8 3.8 2.6 0 1.9-1.4 2.6-3.8 2.6h-2.4V15zm2.7 14.6H10.8v-5.6h2.7c2.6 0 4.1.8 4.1 2.8 0 1.9-1.5 2.8-4.1 2.8zm20.8-12.8h-7.6V20h7.6v-3.2zm2 7.7c-.5-3.8-3.4-6.4-7.5-6.4-4.5 0-8 3.4-8 8.1s3.3 8.1 8 8.1c4.4 0 7.3-2.6 7.7-6.2h-3.6c-.3 1.7-1.7 2.8-4.1 2.8-2.6 0-4.1-1.6-4.3-4H36.3v-.4zm-11.8-2.8c.2-2.1 1.7-3.7 4.1-3.7 2.3 0 3.7 1.5 3.9 3.7H24.5z"
+        />
       )}
       {name === "linkedin" && (
-        <>
-          <path {...common} d="M10 20h7v18h-7zM10 11h7v5h-7zM23 20h7v3c2-3 9-4 9 5v10h-7v-9c0-3-2-4-4-2v11h-5V20z" />
-        </>
+        <path
+          fill="currentColor"
+          d="M12 12c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm-4 32h8V16H8v28zm32 0h-8V30c0-3.3-.1-7.6-4.6-7.6-4.6 0-5.4 3.6-5.4 7.3V44h-8V16h7.7v3.8h.1c1.1-2 3.8-4.2 8-4.2 8.6 0 10.2 5.7 10.2 13.1V44z"
+        />
       )}
       {name === "dribbble" && (
-        <>
-          <path {...common} d="M24 39a15 15 0 1 0 0-30 15 15 0 0 0 0 30z" />
-          <path {...common} d="M12 18c8 3 16 2 24-3M17 36c5-10 12-16 21-17M18 10c6 8 10 17 12 28" />
-        </>
+        <path
+          fill="currentColor"
+          d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4zm14.8 14.2c-1.3-.8-4.4-2.1-8.5-1.5-1.7-4-3.5-7.7-5.4-11 5.3 1.6 9.6 5.2 13.9 12.5zM22.5 6.3c1.8 3.1 3.5 6.7 5.1 10.6-3.8 1.1-7.8 1.6-11.9 1.5-.2-.7-.4-1.5-.6-2.2-2.4-8.1-4.7-13.6-4.7-13.6 4.7-1 8.8-1 12.1 3.7zm-10.4 4c0 0 2.3 5.4 4.7 13.3-4.1 1.1-9 1.4-12.4.6-.2-1.3-.4-2.7-.4-4.2.1-4.1 3-10.3 8.1-13.7zM6.3 27.5c2.9.6 7.4.4 11.2-.6 1.4 3.7 2.7 7.5 3.7 11.2-5.4.1-10.3-2.6-14.9-10.6zm18.3 14.2c-.9-3.5-2.2-7.1-3.5-10.7 3.8-.7 7.9-1 11.9-.9.4 3.3.6 6.5.6 9.4-3.4 1.4-6.3 2.1-9 2.2zm11-4.1c0-2.6-.2-5.6-.6-8.7 3.6-.3 6.9.4 8 .8.4 1.7.6 3.6.6 5.5-1.4.9-4.8 2.2-8 2.4z"
+        />
       )}
       {name === "instagram" && (
-        <>
-          <path {...common} d="M15 10h18a5 5 0 0 1 5 5v18a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V15a5 5 0 0 1 5-5z" />
-          <path {...common} d="M24 30a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM32 16h.2" />
-        </>
+        <path
+          fill="currentColor"
+          d="M24 13.8c-5.6 0-10.2 4.6-10.2 10.2s4.6 10.2 10.2 10.2 10.2-4.6 10.2-10.2-4.6-10.2-10.2-10.2zm0 16.8c-3.6 0-6.6-3-6.6-6.6s3-6.6 6.6-6.6 6.6 3 6.6 6.6-3 6.6-6.6 6.6zm10.8-18c0 1.3-1 2.4-2.4 2.4s-2.4-1-2.4-2.4 1-2.4 2.4-2.4 2.4 1 2.4 2.4zm4.1 4.5c-.2-3.1-.9-5.8-3.1-8-2.2-2.2-4.9-2.9-8-3.1-3.2-.2-12.8-.2-16 0-3.1.2-5.8.9-8 3.1-2.2 2.2-2.9 4.9-3.1 8-.2 3.2-.2 12.8 0 16 .2 3.1.9 5.8 3.1 8 2.2 2.2 4.9 2.9 8 3.1 3.2.2 12.8.2 16 0 3.1-.2 5.8-.9 8-3.1 2.2-2.2 2.9-4.9 3.1-8 .2-3.2.2-12.8 0-16zm-4.3 19.8c-.7 1.8-2.1 3.2-3.9 3.9-2.6 1-8.6.8-11.2.8s-8.7.2-11.2-.8c-1.8-.7-3.2-2.1-3.9-3.9-1-2.6-.8-8.6-.8-11.2s-.2-8.7.8-11.2c.7-1.8 2.1-3.2 3.9-3.9 2.6-1 8.6-.8 11.2-.8s8.7-.2 11.2.8c1.8.7 3.2 2.1 3.9 3.9 1 2.6.8 8.6.8 11.2s.2 8.7-.8 11.2z"
+        />
       )}
       {name === "facebook" && (
-        <>
-          <path {...common} d="M28 12h7V7h-7c-6 0-10 4-10 10v5h-6v7h6v12h8V29h7l1-7h-8v-5c0-3 1-5 2-5z" />
-        </>
+        <path
+          fill="currentColor"
+          d="M32 16h-5v-3.5c0-1.4.9-1.7 1.6-1.7h3.4V5h-4.7c-5.2 0-6.3 3.9-6.3 6.4V16h-3v5.8h3V43h7.2V21.8h4.8L32 16z"
+        />
       )}
-      {name === "check" && <path {...common} d="M13 25l7 7 16-17" />}
+      {name === "check" && <path {...common} d="M 14 25 L 20 31 L 34 17" />}
     </svg>
   );
 }
