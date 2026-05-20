@@ -499,7 +499,7 @@ function Hero() {
             <PremiumGlyph name="designer" className="h-4 w-4 icon-mark" />
             UX/UI Designer and Founder of Framece
           </Badge>
-          <h1 className="font-display text-5xl font-bold leading-[1.02] tracking-normal text-foreground sm:text-7xl lg:text-8xl">
+          <h1 className="font-display text-5xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-7xl lg:text-8xl">
             Designing meaningful{" "}
             <span className="text-gradient">digital experiences.</span>
           </h1>
