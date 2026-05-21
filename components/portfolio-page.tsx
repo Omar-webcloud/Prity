@@ -621,7 +621,7 @@ function Hero() {
               <Button asChild className="rounded-full px-8 py-6 text-base font-semibold shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-primary/25 active:translate-y-0 active:scale-95">
                 <a href="#contact">Schedule Call</a>
               </Button>
-              <Button asChild variant="outline" className="rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 active:scale-95">
+              <Button asChild variant="secondary" className="rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 active:scale-95">
                 <a href="#projects">View Work</a>
               </Button>
             </motion.div>
