@@ -8,6 +8,7 @@ export const viewport: Viewport = {
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SplashScreen } from "@/components/splash-screen";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -79,8 +80,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
-        <SplashScreen />
-        {children}
+        <SmoothScroll>
+          <SplashScreen />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

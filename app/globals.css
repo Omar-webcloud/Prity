@@ -43,7 +43,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Native smooth scrolling is disabled to prevent conflicts with Lenis */
 }
 
 body {
