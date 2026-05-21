@@ -14,6 +14,7 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge, Button, Container, Reveal, Section } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { useLenis } from "lenis/react";
 
 type GlyphName =
   | "signal"
@@ -422,6 +423,15 @@ export function PortfolioPage() {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const lenis = useLenis();
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      setMenuOpen(false);
+      lenis?.scrollTo(href);
+    }
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/72 backdrop-blur-2xl">
@@ -429,7 +439,7 @@ function Header() {
         <a
           href="#home"
           className="focus-ring rounded-full font-display text-base font-bold"
-          onClick={() => setMenuOpen(false)}
+          onClick={(e) => handleScroll(e, "#home")}
         >
           Fariha<span className="text-primary">.</span>
         </a>
@@ -439,6 +449,7 @@ function Header() {
               key={label}
               href={href}
               className="focus-ring rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
+              onClick={(e) => handleScroll(e, href)}
             >
               {label}
             </a>
@@ -491,7 +502,7 @@ function Header() {
                 key={label}
                 href={href}
                 className="focus-ring rounded-[8px] px-4 py-3 text-sm font-semibold text-muted-foreground transition hover:bg-background/55 hover:text-foreground"
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => handleScroll(e, href)}
               >
                 {label}
               </a>
@@ -580,7 +591,7 @@ function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative w-full max-w-sm sm:max-w-md mx-auto lg:ml-auto"
           >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glass border border-border/50 bg-background/50 shadow-2xl">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glass border border-border/50 mesh-gradient shadow-2xl">
               <Image
                 src="/headshot.png"
                 alt="Fariha Munir Prity"

@@ -111,17 +111,17 @@ body {
 
 .mesh-gradient {
   background:
-    linear-gradient(120deg, rgba(124, 58, 237, 0.58), transparent 32%),
-    linear-gradient(260deg, rgba(34, 211, 238, 0.5), transparent 34%),
-    linear-gradient(12deg, rgba(236, 72, 153, 0.38), transparent 36%),
-    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(39, 39, 68, 0.92));
+    linear-gradient(120deg, rgba(124, 58, 237, 0.85), transparent 45%),
+    linear-gradient(260deg, rgba(34, 211, 238, 0.8), transparent 45%),
+    linear-gradient(12deg, rgba(236, 72, 153, 0.7), transparent 50%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(39, 39, 68, 0.96));
 }
 
 .dark .mesh-gradient {
   background:
-    linear-gradient(132deg, rgba(195, 230, 69, 0.38), transparent 31%),
-    linear-gradient(278deg, rgba(168, 214, 50, 0.24), transparent 34%),
-    linear-gradient(20deg, rgba(139, 201, 31, 0.22), transparent 38%),
+    linear-gradient(132deg, rgba(198, 230, 71, 0.75), transparent 45%),
+    linear-gradient(278deg, rgba(198, 230, 71, 0.6), transparent 50%),
+    linear-gradient(20deg, rgba(198, 230, 71, 0.5), transparent 55%),
     linear-gradient(135deg, rgba(18, 23, 42, 0.98), rgba(10, 38, 41, 0.9));
 }
 
