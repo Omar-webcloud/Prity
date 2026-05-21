@@ -4,13 +4,17 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
 // ---------------------------------------------------------------------------
-// Each stroke is drawn in once with a staggered delay.
-// No loop — strokes stay visible until the splash fades out.
+// Each stroke gets its own <motion.path> so it can be staggered independently.
+// The animation replicates the AnimeJS "draw" effect:
+//   strokeDashoffset: ['0 0', '0 1', '1 1']
+// which maps to framer-motion keyframes:
+//   pathLength:  [0, 1, 1, 0]   draw in → hold → draw out
+//   pathOffset:  [0, 0, 0, 1]   start at 0 → stays → offset chases the end
 // ---------------------------------------------------------------------------
 
 interface Stroke {
   d: string;
-  index: number; // fractional stagger index
+  index: number; // fractional index drives the stagger delay
 }
 
 // PRITY – split into individual strokes so each animates sequentially
@@ -20,48 +24,49 @@ const strokes: Stroke[] = [
 
   // ── R ──────────────────────────────────────────────────────────────────
   { d: "M 150,115 V 35 H 190 A 20,20 0 0,1 190,75 H 150", index: 1 },
-  { d: "M 180,75 L 210,115",                               index: 1.4 },
+  { d: "M 180,75 L 210,115", index: 1.4 },
 
   // ── I ──────────────────────────────────────────────────────────────────
-  { d: "M 250,35 H 290",  index: 2 },
-  { d: "M 270,35 V 115",  index: 2.2 },
+  { d: "M 250,35 H 290", index: 2 },
+  { d: "M 270,35 V 115", index: 2.2 },
   { d: "M 250,115 H 290", index: 2.4 },
 
   // ── T ──────────────────────────────────────────────────────────────────
-  { d: "M 325,35 H 390",  index: 3 },
-  { d: "M 357,35 V 115",  index: 3.2 },
+  { d: "M 325,35 H 390", index: 3 },
+  { d: "M 357,35 V 115", index: 3.2 },
 
   // ── Y ──────────────────────────────────────────────────────────────────
   { d: "M 420,35 L 452,80", index: 4 },
   { d: "M 484,35 L 452,80", index: 4.2 },
-  { d: "M 452,80 V 115",    index: 4.4 },
+  { d: "M 452,80 V 115", index: 4.4 },
 ];
 
-// How long each stroke takes to draw (seconds)
-const STROKE_DURATION = 0.9;
-// Gap between the start of each consecutive stroke
-const STAGGER = 0.22;
-// How long to hold the completed name before fading out (ms)
-const HOLD_MS = 800;
+// Total cycle time per stroke (seconds)
+const STROKE_DURATION = 2;
+// Gap between the start of consecutive strokes
+const STAGGER = 0.28;
+// Extra pause before the loop restarts
+const REPEAT_DELAY = 1.2;
 
 const lineVariants: Variants = {
   hidden: {
     pathLength: 0,
+    pathOffset: 0,
     opacity: 0,
   },
   visible: (index: number) => ({
-    pathLength: 1,
-    opacity: 1,
+    pathLength: [0, 1, 1, 0],
+    pathOffset: [0, 0, 0, 1],
+    opacity: [0, 1, 1, 0],
     transition: {
-      pathLength: {
-        duration: STROKE_DURATION,
-        ease: [0.4, 0, 0.2, 1], // smooth cubic-bezier
-        delay: index * STAGGER,
-      },
-      opacity: {
-        duration: 0.01,
-        delay: index * STAGGER,
-      },
+      duration: STROKE_DURATION,
+      ease: "easeInOut",
+      // [draw-start, fully-drawn, hold-end, erase-end]
+      times: [0, 0.42, 0.58, 1],
+      delay: index * STAGGER,
+      repeat: Infinity,
+      repeatType: "loop",
+      repeatDelay: REPEAT_DELAY,
     },
   }),
 };
@@ -69,22 +74,23 @@ const lineVariants: Variants = {
 export function SplashScreen() {
   const [show, setShow] = useState(true);
 
-  // Dismiss after all strokes finish drawing + a short hold
-  const totalDrawMs =
-    (4.4 * STAGGER + STROKE_DURATION) * 1000 + HOLD_MS;
+  // Dismiss after a full first cycle: last stroke starts at index 4.4,
+  // so total ≈ (4.4 * STAGGER) + STROKE_DURATION + some breathing room
+  const dismissMs =
+    (4.4 * STAGGER + STROKE_DURATION + 0.8) * 1000;
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(false), totalDrawMs);
+    const timer = setTimeout(() => setShow(false), dismissMs);
     return () => clearTimeout(timer);
-  }, [totalDrawMs]);
+  }, [dismissMs]);
 
   return (
     <AnimatePresence>
       {show && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
+          exit={{ opacity: 0, scale: 0.97 }}
+          transition={{ duration: 0.65, ease: "easeInOut" }}
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-[#0f0f14]"
           style={{ willChange: "opacity" }}
         >
@@ -106,7 +112,7 @@ export function SplashScreen() {
                 initial="hidden"
                 animate="visible"
                 custom={stroke.index}
-                style={{ willChange: "pathLength, opacity" }}
+                style={{ willChange: "pathLength, pathOffset, opacity" }}
               />
             ))}
           </svg>
