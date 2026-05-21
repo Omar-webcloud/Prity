@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, animate, useInView } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import {
   ArrowRight,
   ChevronRight,
@@ -51,7 +51,7 @@ const navItems = [
 const stats = [
   ["13+", "UX/UI skill areas"],
   ["3", "Featured case studies"],
-  ["2026", "Ostad Mastercamp"],
+  ["Certified", "Ostad UI/UX Bootcamp"],
   ["Framece", "Founder"]
 ] as const;
 
@@ -510,6 +510,37 @@ function Header() {
   );
 }
 
+function AnimatedCounter({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const [displayValue, setDisplayValue] = useState("0");
+
+  useEffect(() => {
+    const numMatch = value.match(/^(\d+)(.*)$/);
+    if (!numMatch) {
+      setDisplayValue(value);
+      return;
+    }
+    
+    if (isInView) {
+      const end = parseInt(numMatch[1], 10);
+      const suffix = numMatch[2];
+      
+      const controls = animate(0, end, {
+        duration: 2,
+        delay: 3.5, // Wait for splash screen
+        ease: "easeOut",
+        onUpdate: (val) => {
+          setDisplayValue(Math.round(val) + suffix);
+        }
+      });
+      return controls.stop;
+    }
+  }, [value, isInView]);
+
+  return <span ref={ref}>{displayValue}</span>;
+}
+
 function Hero() {
   return (
     <section
@@ -526,7 +557,7 @@ function Hero() {
         >
           <Badge className="mb-6 gap-2 text-foreground">
             <PremiumGlyph name="designer" className="h-4 w-4 icon-mark" />
-            UX/UI Designer and Founder of Framece
+            Fariha Munir Prity
           </Badge>
           <h1 className="font-display text-5xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-7xl lg:text-8xl">
             Designing meaningful{" "}
@@ -553,7 +584,7 @@ function Hero() {
           <dl className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {stats.map(([value, label]) => (
               <div key={label} className="glass rounded-[8px] p-4">
-                <dt className="font-display text-xl font-bold">{value}</dt>
+                <dt className="font-display text-xl font-bold"><AnimatedCounter value={value} /></dt>
                 <dd className="mt-1 text-xs leading-5 text-muted-foreground">{label}</dd>
               </div>
             ))}
