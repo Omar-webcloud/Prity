@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, animate, useInView } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   ArrowRight,
   ChevronRight,
@@ -510,110 +510,100 @@ function Header() {
   );
 }
 
-function AnimatedCounter({ value }: { value: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const [displayValue, setDisplayValue] = useState("0");
-
-  useEffect(() => {
-    const numMatch = value.match(/^(\d+)(.*)$/);
-    if (!numMatch) {
-      setDisplayValue(value);
-      return;
-    }
-    
-    if (isInView) {
-      const end = parseInt(numMatch[1], 10);
-      const suffix = numMatch[2];
-      
-      const controls = animate(0, end, {
-        duration: 2,
-        delay: 3.5, // Wait for splash screen
-        ease: "easeOut",
-        onUpdate: (val) => {
-          setDisplayValue(Math.round(val) + suffix);
-        }
-      });
-      return controls.stop;
-    }
-  }, [value, isInView]);
-
-  return <span ref={ref}>{displayValue}</span>;
-}
-
 function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-32"
+      className="relative min-h-screen overflow-hidden flex items-center justify-center pt-20"
     >
       <div className="absolute inset-0 -z-10 bg-hero-grid bg-[size:44px_44px] opacity-45" />
-      <Container className="grid min-h-[calc(100vh-9rem)] items-center gap-12 lg:grid-cols-[1.04fr_0.96fr]">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
+
+      {/* Massive Background Text */}
+      <div className="absolute inset-0 z-0 flex flex-col items-center justify-start pt-[18vh] md:justify-center md:pt-0 pointer-events-none select-none overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          className="max-w-3xl"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-[15vw] md:text-[13vw] font-display font-medium leading-[0.85] tracking-tighter text-foreground whitespace-nowrap md:mt-[-8vh]"
         >
-          <Badge className="mb-6 gap-2 text-foreground">
-            <PremiumGlyph name="designer" className="h-4 w-4 icon-mark" />
-            Fariha Munir Prity
-          </Badge>
-          <h1 className="font-display text-5xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-7xl lg:text-8xl">
-            Designing meaningful{" "}
-            <span className="text-gradient">digital experiences.</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
-            UX/UI Designer focused on intuitive interfaces, modern visuals, and
-            user-centered experiences.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button asChild>
-              <a href="#projects">
-                View projects
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </Button>
-            <Button asChild variant="secondary">
-              <a href="#contact">
-                Contact me
-                <MessageCircle className="h-4 w-4" />
-              </a>
-            </Button>
+          FARIHA PRITY
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+          className="flex w-full px-4 md:px-8 lg:px-12 justify-between text-[10vw] md:text-[8vw] font-display font-light tracking-[0.1em] text-foreground/80 mt-2"
+        >
+          <span>UX/UI</span>
+          <span>DESIGNER</span>
+        </motion.div>
+      </div>
+
+      {/* Center Image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+        className="relative z-10 w-full max-w-[340px] md:max-w-[480px] aspect-[3/4] mx-auto mt-[4vh] md:mt-[8vh]"
+      >
+        <Image
+          src="/headshot.png"
+          alt="Fariha Munir Prity"
+          fill
+          priority
+          sizes="(min-width: 768px) 480px, 340px"
+          className="object-cover object-top drop-shadow-2xl [mask-image:linear-gradient(to_bottom,black_60%,transparent_95%)]"
+        />
+      </motion.div>
+
+      {/* Bottom Content */}
+      <Container className="absolute bottom-4 sm:bottom-8 inset-x-0 z-30 pointer-events-none flex flex-col lg:flex-row justify-between items-end gap-6 lg:gap-8">
+        {/* Left Side (Freelance info) */}
+        <div className="max-w-sm pointer-events-auto pb-4 lg:pb-0">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-background/60 backdrop-blur-md px-3 py-1.5 text-sm text-foreground mb-4 sm:mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            Open for freelance works.
           </div>
-          <dl className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <p className="text-base sm:text-lg text-foreground dark:text-white/90 dark:bg-black/30 dark:backdrop-blur-sm dark:rounded-lg dark:px-3 dark:py-2 leading-relaxed mb-4 sm:mb-6">
+            Hey there! I'm a Brand &amp; UI &amp; UX Designer working in the global marketplace.
+          </p>
+          <Button asChild className="rounded-full px-8 py-6 text-base font-semibold shadow-xl">
+            <a href="#contact">Schedule Call</a>
+          </Button>
+        </div>
+
+        {/* Right Side (Stats) */}
+        <div className="pointer-events-auto w-[100vw] -mx-4 sm:w-full sm:mx-0 lg:w-auto overflow-hidden pb-4 lg:pb-0">
+          
+          {/* Mobile Auto-scrolling Marquee */}
+          <div className="flex lg:hidden relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+            <motion.div 
+              className="flex gap-4 w-max pr-4"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ ease: "linear", duration: 15, repeat: Infinity }}
+            >
+              {[...stats, ...stats].map(([value, label], i) => (
+                <div key={i} className="glass rounded-xl p-5 backdrop-blur-md bg-background/60 w-[55vw] sm:w-[200px] shrink-0">
+                  <dt className="font-display text-2xl font-bold">{value}</dt>
+                  <dd className="mt-1 text-xs text-muted-foreground whitespace-normal">{label}</dd>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Desktop Static Grid */}
+          <dl className="hidden lg:grid lg:grid-cols-4 gap-4">
             {stats.map(([value, label]) => (
-              <div key={label} className="glass rounded-[8px] p-4">
-                <dt className="font-display text-xl font-bold"><AnimatedCounter value={value} /></dt>
-                <dd className="mt-1 text-xs leading-5 text-muted-foreground">{label}</dd>
+              <div key={label} className="glass rounded-xl p-4 backdrop-blur-md bg-background/60 min-w-0">
+                <dt className="font-display text-2xl font-bold">{value}</dt>
+                <dd className="mt-1 text-xs text-muted-foreground whitespace-normal">{label}</dd>
               </div>
             ))}
           </dl>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.75, ease: "easeOut", delay: 0.1 }}
-          className="relative mx-auto w-full max-w-[470px] lg:ml-auto"
-        >
-          <div className="mesh-gradient absolute inset-x-4 bottom-0 top-12 -z-10 rounded-[32px] opacity-75 blur-3xl" />
-          <div className="glass relative overflow-hidden rounded-[8px] p-3 sm:p-4">
-            <div className="absolute left-7 top-7 z-10 h-16 w-16 border-l border-t border-white/45" />
-            <div className="absolute bottom-7 right-7 z-10 h-16 w-16 border-b border-r border-white/45" />
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[8px] bg-[#e9ff26]">
-              <Image
-                src="/headshot.jpeg"
-                alt="Fariha Munir Prity"
-                fill
-                priority
-                sizes="(min-width: 1024px) 42vw, 90vw"
-                className="object-cover object-[50%_30%]"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/5 mix-blend-multiply" />
-            </div>
-          </div>
-        </motion.div>
+        </div>
       </Container>
     </section>
   );
