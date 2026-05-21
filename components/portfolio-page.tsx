@@ -15,6 +15,8 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge, Button, Container, Reveal, Section } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { useLenis } from "lenis/react";
+import { BiLogoBehance } from "react-icons/bi";
+import { FaDribbble, FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
 type GlyphName =
   | "signal"
@@ -154,24 +156,24 @@ const socials = [
   {
     label: "Behance",
     href: "https://www.behance.net/farihaprity1",
-    icon: "behance"
+    icon: "behance" as const
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/",
-    icon: "linkedin"
+    icon: "linkedin" as const
   },
   {
     label: "Dribbble",
     href: "https://dribbble.com/",
-    icon: "dribbble"
+    icon: "dribbble" as const
   },
   {
     label: "Instagram",
     href: "https://www.instagram.com/",
-    icon: "instagram"
+    icon: "instagram" as const
   }
-] as const;
+];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -396,6 +398,19 @@ function PremiumGlyph({
   );
 }
 
+type SocialIconName = "behance" | "linkedin" | "dribbble" | "instagram" | "facebook";
+
+function SocialIcon({ name, className }: { name: SocialIconName; className?: string }) {
+  const icons: Record<SocialIconName, React.ReactNode> = {
+    behance:   <BiLogoBehance className={className} />,
+    linkedin:  <FaLinkedinIn className={className} />,
+    dribbble:  <FaDribbble  className={className} />,
+    instagram: <FaInstagram className={className} />,
+    facebook:  <FaFacebookF className={className} />,
+  };
+  return <>{icons[name]}</> ;
+}
+
 export function PortfolioPage() {
   return (
     <>
@@ -536,9 +551,12 @@ function Hero() {
           <div className="flex flex-col items-start gap-6 max-w-2xl pt-8 lg:pt-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-background/60 backdrop-blur-md px-3 py-1.5 text-sm text-foreground"
+              animate={{ opacity: 1, y: [0, -4, 0] }}
+              transition={{ 
+                opacity: { duration: 0.5 },
+                y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-background/60 backdrop-blur-md px-3 py-1.5 text-sm text-foreground shadow-sm hover:shadow-md transition-shadow cursor-default"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -556,7 +574,7 @@ function Hero() {
                 Fariha Prity<span className="text-primary">.</span>
               </h1>
               <h2 className="mt-4 font-display text-2xl sm:text-3xl lg:text-4xl text-muted-foreground">
-                Brand &amp; UX/UI Designer
+                Product &amp; UX/UI Designer
               </h2>
             </motion.div>
 
@@ -566,7 +584,7 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg sm:text-xl text-muted-foreground leading-relaxed"
             >
-              Hey there! I'm a Brand &amp; UI &amp; UX Designer working in the global marketplace. I build intuitive interfaces, modern visuals, and user-centered experiences.
+              Hey there! I'm a Product &amp; UI &amp; UX Designer working in the global marketplace. I build intuitive interfaces, modern visuals, and user-centered experiences.
             </motion.p>
 
             <motion.div
@@ -575,10 +593,10 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-wrap items-center gap-4 pt-4"
             >
-              <Button asChild className="rounded-full px-8 py-6 text-base font-semibold shadow-xl">
+              <Button asChild className="rounded-full px-8 py-6 text-base font-semibold shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-primary/25 active:translate-y-0 active:scale-95">
                 <a href="#contact">Schedule Call</a>
               </Button>
-              <Button asChild variant="outline" className="rounded-full px-8 py-6 text-base font-semibold">
+              <Button asChild variant="outline" className="rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 active:scale-95">
                 <a href="#projects">View Work</a>
               </Button>
             </motion.div>
@@ -587,11 +605,15 @@ function Hero() {
           {/* Right Content - Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative w-full max-w-sm sm:max-w-md mx-auto lg:ml-auto"
+            animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
+            transition={{ 
+              opacity: { duration: 0.7, delay: 0.2 },
+              scale: { duration: 0.7, delay: 0.2 },
+              y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+            }}
+            className="relative w-full max-w-sm sm:max-w-md mx-auto lg:ml-auto group"
           >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glass border border-border/50 mesh-gradient shadow-2xl">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glass border border-border/50 mesh-gradient shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] group-hover:shadow-primary/20">
               <Image
                 src="/headshot.png"
                 alt="Fariha Munir Prity"
@@ -758,8 +780,9 @@ function ProjectCard({
     <Reveal>
       <motion.article
         whileHover={{ y: -6 }}
+        whileTap={{ scale: 0.99 }}
         transition={{ duration: 0.25 }}
-        className="glass grid gap-6 overflow-hidden rounded-[8px] p-4 sm:p-5 lg:grid-cols-2 lg:items-stretch"
+        className="glass grid gap-6 overflow-hidden rounded-[8px] p-4 sm:p-5 lg:grid-cols-2 lg:items-stretch group cursor-pointer"
       >
         <div className={cn("min-h-[320px]", flip && "lg:order-2")}>
           <ProjectMockup project={project} />
@@ -812,7 +835,7 @@ function ProjectMockup({ project }: { project: (typeof projects)[number] }) {
 
   return (
     <div className={cn("relative h-full min-h-[320px] overflow-hidden rounded-[8px] bg-gradient-to-br p-5", project.accent)}>
-      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-black/10 transition-opacity duration-500 group-hover:opacity-0" />
       <div className="relative h-full rounded-[8px] border border-white/30 bg-white/18 p-4 shadow-2xl backdrop-blur-xl">
         {isFinance ? (
           <div className="grid h-full grid-cols-5 gap-3 text-white">
@@ -952,7 +975,7 @@ function SocialButton({
 }: {
   href: string;
   label: string;
-  icon: GlyphName;
+  icon: SocialIconName;
 }) {
   return (
     <Link
@@ -962,7 +985,7 @@ function SocialButton({
       className="focus-ring flex items-center justify-between rounded-[8px] border border-white/20 bg-white/10 p-4 text-sm font-semibold text-white transition hover:bg-white/18"
     >
       <span className="flex items-center gap-3">
-        <PremiumGlyph name={icon} className="h-5 w-5 text-white" />
+        <SocialIcon name={icon} className="h-5 w-5 text-white" />
         {label}
       </span>
       <ChevronRight className="h-4 w-4" />
@@ -1017,10 +1040,10 @@ function Contact() {
           <p className="mt-4 text-base leading-8 text-muted-foreground">
             For direct inquiries, portfolio reviews, and collaboration opportunities, send an email or connect through social profiles.
           </p>
-          <Button asChild className="mt-7">
+          <Button asChild className="mt-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95">
             <a href="mailto:hello@framece.design">
-              hello@framece.design
               <Mail className="h-4 w-4" />
+              hello@framece.design
             </a>
           </Button>
           <div className="mt-8 grid grid-cols-2 gap-3">
@@ -1031,9 +1054,9 @@ function Contact() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={social.label}
-                className="focus-ring flex items-center gap-3 rounded-[8px] border bg-background/55 p-4 text-sm font-semibold transition hover:-translate-y-0.5 hover:border-primary/60"
+                className="focus-ring flex items-center gap-3 rounded-[8px] border bg-background/55 p-4 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md hover:bg-background/80 group"
               >
-                <PremiumGlyph name={social.icon} className="h-5 w-5 icon-mark" />
+                <SocialIcon name={social.icon} className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
                 {social.label}
               </Link>
             ))}
@@ -1058,9 +1081,9 @@ function Contact() {
             ].map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-3 rounded-[8px] border bg-background/45 p-4 text-sm font-semibold"
+                className="flex items-center gap-3 rounded-[8px] border bg-background/45 p-4 text-sm font-semibold transition-all duration-300 hover:bg-background/60 hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-sm cursor-default"
               >
-                <PremiumGlyph name="check" className="h-5 w-5 icon-mark" />
+                <PremiumGlyph name="check" className="h-5 w-5 text-primary" />
                 {item}
               </div>
             ))}
