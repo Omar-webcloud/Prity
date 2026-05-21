@@ -449,89 +449,114 @@ function Header() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/72 backdrop-blur-2xl">
-      <Container className="flex h-16 items-center justify-between">
+    <header className="fixed inset-x-0 top-0 z-50 navbar-glass transition-all duration-300">
+      <Container className="flex h-16 items-center justify-between gap-4">
+
+        {/* Logo */}
         <a
           href="#home"
-          className="focus-ring rounded-full font-display text-base font-bold"
+          className="focus-ring rounded-full font-display text-base font-bold tracking-tight"
           onClick={(e) => handleScroll(e, "#home")}
         >
           Fariha<span className="text-primary">.</span>
         </a>
-        <nav aria-label="Main navigation" className="hidden items-center gap-1 md:flex">
+
+        {/* Desktop Nav — floating pill */}
+        <nav
+          aria-label="Main navigation"
+          className="hidden md:flex items-center gap-0.5 rounded-full border border-border/50 bg-background/50 backdrop-blur-xl px-1.5 py-1.5 shadow-sm"
+        >
           {navItems.map(([label, href]) => (
             <a
               key={label}
               href={href}
-              className="focus-ring rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
+              className="focus-ring relative rounded-full px-4 py-1.5 text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-foreground/6 hover:text-foreground"
               onClick={(e) => handleScroll(e, href)}
             >
               {label}
             </a>
           ))}
         </nav>
+
+        {/* Right actions */}
         <div className="flex items-center gap-2">
-          <Button asChild variant="secondary" className="hidden sm:inline-flex">
+          <Button
+            asChild
+            variant="secondary"
+            className="hidden sm:inline-flex rounded-full shadow-sm border border-border/50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+          >
             <a href="mailto:hello@framece.design">
-              <Mail className="h-4 w-4" />
+              <Mail className="h-3.5 w-3.5" />
               Email
             </a>
           </Button>
           <ThemeToggle />
+
+          {/* Mobile hamburger */}
           <button
             type="button"
-            className="focus-ring relative grid h-11 w-11 place-items-center rounded-full border bg-card/70 md:hidden"
+            className="focus-ring relative grid h-9 w-9 place-items-center rounded-full border border-border/60 bg-card/60 backdrop-blur-md md:hidden transition-colors duration-200 hover:bg-card"
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
           >
             <span
               className={cn(
-                "absolute h-0.5 w-5 rounded-full bg-foreground transition",
+                "absolute h-0.5 w-4 rounded-full bg-foreground transition-all duration-300",
                 menuOpen ? "rotate-45" : "-translate-y-1.5"
               )}
             />
             <span
               className={cn(
-                "absolute h-0.5 w-5 rounded-full bg-foreground transition",
-                menuOpen ? "opacity-0" : "opacity-100"
+                "absolute h-0.5 w-4 rounded-full bg-foreground transition-all duration-300",
+                menuOpen ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
               )}
             />
             <span
               className={cn(
-                "absolute h-0.5 w-5 rounded-full bg-foreground transition",
+                "absolute h-0.5 w-4 rounded-full bg-foreground transition-all duration-300",
                 menuOpen ? "-rotate-45" : "translate-y-1.5"
               )}
             />
           </button>
         </div>
       </Container>
-      {menuOpen ? (
-        <Container className="pb-4 md:hidden">
-          <nav
-            aria-label="Mobile navigation"
-            className="glass grid gap-1 rounded-[8px] p-2"
-          >
-            {navItems.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                className="focus-ring rounded-[8px] px-4 py-3 text-sm font-semibold text-muted-foreground transition hover:bg-background/55 hover:text-foreground"
-                onClick={(e) => handleScroll(e, href)}
-              >
-                {label}
-              </a>
-            ))}
-            <a
-              href="mailto:hello@framece.design"
-              className="focus-ring mt-1 rounded-[8px] bg-foreground px-4 py-3 text-sm font-semibold text-background"
-              onClick={() => setMenuOpen(false)}
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Container className="pb-4 md:hidden">
+            <nav
+              aria-label="Mobile navigation"
+              className="glass grid gap-1 rounded-2xl p-2 shadow-xl"
             >
-              Email Fariha
-            </a>
-          </nav>
-        </Container>
-      ) : null}
+              {navItems.map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="focus-ring flex items-center rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground transition-all duration-200 hover:bg-foreground/6 hover:text-foreground"
+                  onClick={(e) => handleScroll(e, href)}
+                >
+                  {label}
+                </a>
+              ))}
+              <a
+                href="mailto:hello@framece.design"
+                className="focus-ring mt-1 flex items-center justify-center gap-2 rounded-xl bg-foreground px-4 py-3 text-sm font-semibold text-background transition-all duration-200 hover:bg-foreground/90"
+                onClick={() => setMenuOpen(false)}
+              >
+                <Mail className="h-3.5 w-3.5" />
+                Email Fariha
+              </a>
+            </nav>
+          </Container>
+        </motion.div>
+      )}
     </header>
   );
 }
@@ -778,12 +803,7 @@ function ProjectCard({
 }) {
   return (
     <Reveal>
-      <motion.article
-        whileHover={{ y: -6 }}
-        whileTap={{ scale: 0.99 }}
-        transition={{ duration: 0.25 }}
-        className="glass grid gap-6 overflow-hidden rounded-[8px] p-4 sm:p-5 lg:grid-cols-2 lg:items-stretch group cursor-pointer"
-      >
+      <article className="glass grid gap-6 overflow-hidden rounded-[8px] p-4 sm:p-5 lg:grid-cols-2 lg:items-stretch">
         <div className={cn("min-h-[320px]", flip && "lg:order-2")}>
           <ProjectMockup project={project} />
         </div>
@@ -815,7 +835,7 @@ function ProjectCard({
             </Link>
           </Button>
         </div>
-      </motion.article>
+      </article>
     </Reveal>
   );
 }
