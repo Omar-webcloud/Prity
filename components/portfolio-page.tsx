@@ -168,7 +168,7 @@ const socials = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/in/fariha-munir-prity-528005328/",
     icon: "linkedin" as const
   },
   {
@@ -201,7 +201,8 @@ const jsonLd = {
   sameAs: [
     "https://www.behance.net/farihaprity1",
     "https://www.facebook.com/profile.php?id=61574512438579",
-    "https://www.instagram.com/fram3ce"
+    "https://www.instagram.com/fram3ce",
+    "https://www.linkedin.com/in/fariha-munir-prity-528005328/"
   ]
 };
 
