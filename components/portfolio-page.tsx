@@ -114,7 +114,7 @@ const projects = [
     image: "/Finance dashboard.png"
   },
   {
-    title: "Plastic Reduce App",
+    title: "PlastiTrack - Plastic Reduce App",
     category: "Mobile App Design",
     url: "https://www.behance.net/gallery/242754177/Plastic-Reduce-App",
     summary:
@@ -462,7 +462,7 @@ function Header() {
           className="focus-ring rounded-full font-display text-base font-bold tracking-tight"
           onClick={(e) => handleScroll(e, "#home")}
         >
-          Fariha<span className="text-primary">.</span>
+          Prity<span className="text-primary">.</span>
         </a>
 
         {/* Desktop Nav — floating pill */}
@@ -820,10 +820,6 @@ function ProjectCard({
           </div>
           <h3 className="font-display text-2xl font-bold sm:text-4xl">{project.title}</h3>
           <p className="mt-4 text-base leading-8 text-muted-foreground">{project.summary}</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <InfoBlock label="Problem" copy={project.problem} />
-            <InfoBlock label="Outcome" copy={project.outcome} />
-          </div>
           <div className="mt-6 flex flex-wrap gap-2">
             {project.process.map((step) => (
               <span key={step} className="inline-flex items-center gap-2 text-sm text-muted-foreground">
@@ -844,14 +840,7 @@ function ProjectCard({
   );
 }
 
-function InfoBlock({ label, copy }: { label: string; copy: string }) {
-  return (
-    <div className="rounded-[8px] border bg-background/55 p-4">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{label}</p>
-      <p className="mt-2 text-sm leading-7 text-muted-foreground">{copy}</p>
-    </div>
-  );
-}
+
 
 function ProjectMockup({ project }: { project: (typeof projects)[number] }) {
   const isFinance = project.mockup === "finance";
@@ -979,26 +968,43 @@ function SocialButton({
   );
 }
 
+const testimonials = [
+  {
+    quote: "Prity brings clear product thinking, careful visuals, and a collaborative process to every design conversation. Working with her has elevated our dashboard interfaces significantly.",
+    name: "Tanzim Rahman",
+    role: "Startup Founder"
+  },
+  {
+    quote: "Her attention to detail, design system structure, and clean Figma practices made our developer handoff incredibly smooth. She is a massive asset to any product team.",
+    name: "Nabila Tabassum",
+    role: "Product Lead"
+  },
+  {
+    quote: "Prity is an outstanding UI designer. She translates complex user requirements into elegant, simple, and clean interfaces with remarkable speed and excellent communication.",
+    name: "Sajid Chowdhury",
+    role: "Creative Director"
+  }
+] as const;
+
 function Testimonials() {
   return (
     <Section
       id="testimonials"
       eyebrow="Testimonials"
       title="Kind words, ready for future proof."
-      description="Placeholder testimonial cards are included so the portfolio can scale cleanly once real client feedback is available."
+      description="Feedback and reviews from clients and product team members on collaborative design work."
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {["Startup Founder", "Product Lead", "Creative Collaborator"].map((role, index) => (
-          <Reveal key={role} delay={index * 0.06} className="glass rounded-[8px] p-6">
+        {testimonials.map((item, index) => (
+          <Reveal key={item.name} delay={index * 0.06} className="glass rounded-[8px] p-6">
             <p className="text-base leading-8 text-muted-foreground">
-              Fariha brings clear product thinking, careful visuals, and a collaborative
-              process to every design conversation.
+              {item.quote}
             </p>
             <div className="mt-6 flex items-center gap-3">
               <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent" />
               <div>
-                <p className="font-semibold">Future Client</p>
-                <p className="text-sm text-muted-foreground">{role}</p>
+                <p className="font-semibold">{item.name}</p>
+                <p className="text-sm text-muted-foreground">{item.role}</p>
               </div>
             </div>
           </Reveal>
