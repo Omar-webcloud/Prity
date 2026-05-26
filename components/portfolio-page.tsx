@@ -600,7 +600,7 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
-                Fariha Prity<span className="text-primary">.</span>
+                Fariha Munir<span className="text-primary">.</span>
               </h1>
               <h2 className="mt-4 font-display text-2xl sm:text-3xl lg:text-4xl text-muted-foreground">
                 Product &amp; UX/UI Designer
