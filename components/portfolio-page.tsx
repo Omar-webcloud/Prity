@@ -398,7 +398,7 @@ function PremiumGlyph({
   );
 }
 
-type SocialIconName = "behance" | "linkedin" | "dribbble" | "instagram" | "facebook";
+type SocialIconName = "behance" | "linkedin" | "dribbble" | "instagram" | "facebook" | "mail";
 
 function SocialIcon({ name, className }: { name: SocialIconName; className?: string }) {
   const icons: Record<SocialIconName, React.ReactNode> = {
@@ -407,6 +407,7 @@ function SocialIcon({ name, className }: { name: SocialIconName; className?: str
     dribbble:  <FaDribbble  className={className} />,
     instagram: <FaInstagram className={className} />,
     facebook:  <FaFacebookF className={className} />,
+    mail:      <Mail className={className} />,
   };
   return <>{icons[name]}</> ;
 }
@@ -485,7 +486,7 @@ function Header() {
             variant="secondary"
             className="hidden sm:inline-flex rounded-full shadow-sm border border-border/50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
           >
-            <a href="mailto:hello@framece.design">
+            <a href="mailto:farihamunirprity@gmail.com">
               <Mail className="h-3.5 w-3.5" />
               Email
             </a>
@@ -546,7 +547,7 @@ function Header() {
                 </a>
               ))}
               <a
-                href="mailto:hello@framece.design"
+                href="mailto:farihamunirprity@gmail.com"
                 className="focus-ring mt-1 flex items-center justify-center gap-2 rounded-xl bg-foreground px-4 py-3 text-sm font-semibold text-background transition-all duration-200 hover:bg-foreground/90"
                 onClick={() => setMenuOpen(false)}
               >
@@ -970,7 +971,7 @@ function Framece() {
               and creative direction with a clear, modern point of view.
             </p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
             <SocialButton
               href="https://www.facebook.com/profile.php?id=61574512438579"
               label="Framece Facebook"
@@ -980,6 +981,11 @@ function Framece() {
               href="https://www.instagram.com/fram3ce"
               label="Framece Instagram"
               icon="instagram"
+            />
+            <SocialButton
+              href="mailto:farihamunirprity@gmail.com"
+              label="Framece Email"
+              icon="mail"
             />
           </div>
         </div>
@@ -1061,9 +1067,9 @@ function Contact() {
             For direct inquiries, portfolio reviews, and collaboration opportunities, send an email or connect through social profiles.
           </p>
           <Button asChild className="mt-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95">
-            <a href="mailto:hello@framece.design">
+            <a href="mailto:farihamunirprity@gmail.com">
               <Mail className="h-4 w-4" />
-              hello@framece.design
+              farihamunirprity@gmail.com
             </a>
           </Button>
           <div className="mt-8 grid grid-cols-2 gap-3">

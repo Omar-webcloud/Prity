@@ -22,7 +22,7 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap"
 });
 
-const siteUrl = "https://farihaprity.com";
+const siteUrl = "https://fariha-munir-prity.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

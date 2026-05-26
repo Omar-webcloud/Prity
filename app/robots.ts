@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/"
     },
-    sitemap: "https://farihaprity.com/sitemap.xml"
+    sitemap: "https://fariha-munir-prity.vercel.app/sitemap.xml"
   };
 }
