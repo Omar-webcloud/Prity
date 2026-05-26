@@ -18,6 +18,11 @@ import { useLenis } from "lenis/react";
 import { BiLogoBehance } from "react-icons/bi";
 import { FaDribbble, FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
+// Import local high-resolution mockup images statically for optimized rendering, WebP generation, responsive sizes, and blurred placeholders.
+import financeImage from "@/public/Finance dashboard.png";
+import plastiImage from "@/public/plastitrack.jpeg";
+import chatlyImage from "@/public/chatly.jpeg";
+
 type GlyphName =
   | "signal"
   | "designer"
@@ -845,6 +850,15 @@ function ProjectCard({
 function ProjectMockup({ project }: { project: (typeof projects)[number] }) {
   const isFinance = project.mockup === "finance";
 
+  // Map each project mockup key to its statically imported high-res image
+  const staticImageMap = {
+    finance: financeImage,
+    plastic: plastiImage,
+    chat: chatlyImage,
+  } as const;
+
+  const currentStaticImage = staticImageMap[project.mockup];
+
   return (
     <div className={cn(
       "relative w-full h-fit overflow-hidden rounded-[8px] bg-gradient-to-br flex items-center justify-center", 
@@ -860,18 +874,26 @@ function ProjectMockup({ project }: { project: (typeof projects)[number] }) {
             <div className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
           </div>
           {/* Real Image */}
-          <img
-            src={project.image}
+          <div className="relative w-full h-auto overflow-hidden">
+            <Image
+              src={currentStaticImage}
+              alt={project.title}
+              loading="lazy"
+              placeholder="blur"
+              className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="relative w-full h-auto overflow-hidden">
+          <Image
+            src={currentStaticImage}
             alt={project.title}
+            loading="lazy"
+            placeholder="blur"
             className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </div>
-      ) : (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105"
-        />
       )}
     </div>
   );
