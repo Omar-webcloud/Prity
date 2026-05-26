@@ -110,7 +110,8 @@ const projects = [
     tools: ["Figma", "Components", "Auto Layout"],
     outcome: "Clearer hierarchy for balances, spending signals, cards, and transaction review.",
     accent: "from-violet-500 via-indigo-500 to-cyan-400",
-    mockup: "finance"
+    mockup: "finance",
+    image: "/Finance dashboard.png"
   },
   {
     title: "Plastic Reduce App",
@@ -124,7 +125,8 @@ const projects = [
     tools: ["Figma", "Smart Animate", "Variables"],
     outcome: "A friendly mobile journey for goals, reminders, impact tracking, and habit momentum.",
     accent: "from-emerald-400 via-cyan-400 to-sky-500",
-    mockup: "plastic"
+    mockup: "plastic",
+    image: "/plastitrack.jpeg"
   },
   {
     title: "Chatly - Minimal Communication App",
@@ -138,7 +140,8 @@ const projects = [
     tools: ["Figma", "Variants", "Team Libraries"],
     outcome: "A clean communication flow with readable threads, clear actions, and soft interaction polish.",
     accent: "from-fuchsia-500 via-pink-400 to-orange-300",
-    mockup: "chat"
+    mockup: "chat",
+    image: "/chatly.jpeg"
   }
 ] as const;
 
@@ -610,7 +613,7 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg sm:text-xl text-muted-foreground leading-relaxed"
             >
-              Hey there! I'm a Product &amp; UI &amp; UX Designer working in the global marketplace. I build intuitive interfaces, modern visuals, and user-centered experiences.
+              Hey there! I&apos;m a Product &amp; UI &amp; UX Designer working in the global marketplace. I build intuitive interfaces, modern visuals, and user-centered experiences.
             </motion.p>
 
             <motion.div
@@ -805,7 +808,7 @@ function ProjectCard({
   return (
     <Reveal>
       <article className="glass grid gap-6 overflow-hidden rounded-[8px] p-4 sm:p-5 lg:grid-cols-2 lg:items-stretch">
-        <div className={cn("min-h-[320px]", flip && "lg:order-2")}>
+        <div className={cn("w-full flex items-center justify-center", flip && "lg:order-2")}>
           <ProjectMockup project={project} />
         </div>
         <div className="flex flex-col justify-center p-2 sm:p-5">
@@ -852,78 +855,35 @@ function InfoBlock({ label, copy }: { label: string; copy: string }) {
 
 function ProjectMockup({ project }: { project: (typeof projects)[number] }) {
   const isFinance = project.mockup === "finance";
-  const isPlastic = project.mockup === "plastic";
 
   return (
-    <div className={cn("relative h-full min-h-[320px] overflow-hidden rounded-[8px] bg-gradient-to-br p-5", project.accent)}>
+    <div className={cn(
+      "relative w-full h-fit overflow-hidden rounded-[8px] bg-gradient-to-br flex items-center justify-center", 
+      project.accent
+    )}>
       <div className="absolute inset-0 bg-black/10 transition-opacity duration-500 group-hover:opacity-0" />
-      <div className="relative h-full rounded-[8px] border border-white/30 bg-white/18 p-4 shadow-2xl backdrop-blur-xl">
-        {isFinance ? (
-          <div className="grid h-full grid-cols-5 gap-3 text-white">
-            <div className="col-span-2 rounded-[8px] bg-white/20 p-4">
-              <div className="h-3 w-20 rounded-full bg-white/70" />
-              <div className="mt-6 font-display text-4xl font-bold">$24.8k</div>
-              <div className="mt-4 h-24 rounded-[8px] bg-white/15" />
-            </div>
-            <div className="col-span-3 grid gap-3">
-              <div className="rounded-[8px] bg-white/22 p-4">
-                <div className="h-3 w-28 rounded-full bg-white/70" />
-                <div className="mt-5 flex h-24 items-end gap-2">
-                  {[44, 72, 52, 86, 62, 94, 70].map((height) => (
-                    <span
-                      key={height}
-                      className="flex-1 rounded-t-full bg-white/70"
-                      style={{ height: `${height}%` }}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-3">
-                {[1, 2, 3].map((item) => (
-                  <div key={item} className="h-20 rounded-[8px] bg-white/18" />
-                ))}
-              </div>
-            </div>
+      {isFinance ? (
+        <div className="relative w-full flex flex-col overflow-hidden bg-slate-900/10">
+          {/* Browser Header Mock */}
+          <div className="flex items-center gap-1.5 border-b border-white/15 bg-white/10 px-4 py-3 z-10 shrink-0">
+            <div className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+            <div className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+            <div className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
           </div>
-        ) : isPlastic ? (
-          <div className="mx-auto flex h-full max-w-[240px] flex-col rounded-[32px] border border-white/40 bg-white/90 p-4 text-slate-900 shadow-2xl">
-            <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-slate-300" />
-            <div className="rounded-[24px] bg-emerald-100 p-5">
-              <p className="text-xs font-bold uppercase text-emerald-700">Weekly impact</p>
-              <p className="mt-2 font-display text-4xl font-bold">42%</p>
-              <div className="mt-4 h-3 rounded-full bg-white">
-                <div className="h-3 w-[66%] rounded-full bg-emerald-500" />
-              </div>
-            </div>
-            <div className="mt-4 grid gap-3">
-              {["Reusable bottle", "Bag swap", "Recycle check"].map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-[18px] bg-slate-100 p-3">
-                  <PremiumGlyph name="check" className="h-5 w-5 text-emerald-500" />
-                  <span className="text-sm font-semibold">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="mx-auto flex h-full max-w-[260px] flex-col rounded-[32px] border border-white/40 bg-white/92 p-4 text-slate-900 shadow-2xl">
-            <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-slate-300" />
-            <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-fuchsia-400 to-orange-300" />
-              <div>
-                <p className="text-sm font-bold">Chatly</p>
-                <p className="text-xs text-slate-500">Active now</p>
-              </div>
-            </div>
-            <div className="mt-5 grid gap-3">
-              <div className="w-4/5 rounded-[18px] bg-slate-100 p-3 text-sm">Minimal, calm, and clear.</div>
-              <div className="ml-auto w-4/5 rounded-[18px] bg-fuchsia-500 p-3 text-sm text-white">
-                Designed for better focus.
-              </div>
-              <div className="w-3/5 rounded-[18px] bg-slate-100 p-3 text-sm">Love the flow.</div>
-            </div>
-          </div>
-        )}
-      </div>
+          {/* Real Image */}
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+        </div>
+      ) : (
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      )}
     </div>
   );
 }
