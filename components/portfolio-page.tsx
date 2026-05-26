@@ -19,9 +19,9 @@ import { BiLogoBehance } from "react-icons/bi";
 import { FaDribbble, FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
 // Import local high-resolution mockup images statically for optimized rendering, WebP generation, responsive sizes, and blurred placeholders.
-import financeImage from "@/public/Finance dashboard.png";
-import plastiImage from "@/public/plastitrack.jpeg";
-import chatlyImage from "@/public/chatly.jpeg";
+import financeImage from "@/public/Finance dashboard.webp";
+import plastiImage from "@/public/plastitrack.webp";
+import chatlyImage from "@/public/chatly.webp";
 
 type GlyphName =
   | "signal"
@@ -116,7 +116,7 @@ const projects = [
     outcome: "Clearer hierarchy for balances, spending signals, cards, and transaction review.",
     accent: "from-violet-500 via-indigo-500 to-cyan-400",
     mockup: "finance",
-    image: "/Finance dashboard.png"
+    image: "/Finance dashboard.webp"
   },
   {
     title: "PlastiTrack - Plastic Reduce App",
@@ -131,7 +131,7 @@ const projects = [
     outcome: "A friendly mobile journey for goals, reminders, impact tracking, and habit momentum.",
     accent: "from-emerald-400 via-cyan-400 to-sky-500",
     mockup: "plastic",
-    image: "/plastitrack.jpeg"
+    image: "/plastitrack.webp"
   },
   {
     title: "Chatly - Minimal Communication App",
@@ -146,7 +146,7 @@ const projects = [
     outcome: "A clean communication flow with readable threads, clear actions, and soft interaction polish.",
     accent: "from-fuchsia-500 via-pink-400 to-orange-300",
     mockup: "chat",
-    image: "/chatly.jpeg"
+    image: "/chatly.webp"
   }
 ] as const;
 
