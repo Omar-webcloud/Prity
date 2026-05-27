@@ -648,7 +648,7 @@ function Hero() {
             }}
             className="relative w-full max-w-sm sm:max-w-md mx-auto lg:ml-auto group"
           >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glass border border-border/50 mesh-gradient shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] group-hover:shadow-primary/20">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glass border border-border/50 hero-mesh-gradient shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] group-hover:shadow-primary/20">
               <Image
                 src="/headshot.png"
                 alt="Fariha Munir Prity"
