@@ -176,3 +176,18 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  will-change: transform;
+  animation: marquee 22s linear infinite;
+}
+

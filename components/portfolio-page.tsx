@@ -178,7 +178,7 @@ const socials = [
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/",
+    href: "https://www.instagram.com/fram3ce",
     icon: "instagram" as const
   }
 ];
@@ -669,11 +669,9 @@ function Hero() {
           className="w-full"
         >
           {/* Mobile Auto-scrolling Marquee */}
-          <div className="flex lg:hidden relative w-[100vw] -mx-4 sm:w-full sm:mx-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-            <motion.div 
-              className="flex gap-4 w-max pr-4 pl-4 sm:pl-0"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ ease: "linear", duration: 15, repeat: Infinity }}
+          <div className="flex lg:hidden relative w-[100vw] -mx-4 sm:w-full sm:mx-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <div 
+              className="flex gap-4 w-max pr-4 animate-marquee"
             >
               {[...stats, ...stats].map(([value, label], i) => (
                 <div key={i} className="glass rounded-xl p-5 backdrop-blur-md bg-background/60 w-[55vw] sm:w-[200px] shrink-0">
@@ -681,7 +679,7 @@ function Hero() {
                   <dd className="mt-1 text-xs text-muted-foreground whitespace-normal">{label}</dd>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* Desktop Static Grid */}
